@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bbtutorials.users.entity.Users;
 import com.bbtutorials.users.links.UserLinks;
@@ -18,27 +20,28 @@ import com.bbtutorials.users.service.UsersService;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.client.RestTemplate;
-
+import java.awt.PageAttributes.MediaType;
 @Slf4j
 @RestController
 @RequestMapping("/api/")
 public class UsersController {
-	
-	@Autowired
-	UsersService usersService;
+
+    @Autowired
+    UsersService usersService;
 //    public static final String LIST_USERS = "/users";
 //    public static final String ADD_USER = "/user";
 
-	@GetMapping(path = UserLinks.LIST_USERS)
+
+    @GetMapping(path = UserLinks.LIST_USERS)
     public ResponseEntity<?> listUsers() {
         log.info("UsersController:  list users");
         List<Users> resource = usersService.getUsers();
         System.out.println();
         return ResponseEntity.ok(resource);
     }
-	
-	@PostMapping(path = UserLinks.ADD_USER)
-	public ResponseEntity<?> saveUser(@RequestBody Users user) {
+
+    @PostMapping(path = UserLinks.ADD_USER)
+    public ResponseEntity<?> saveUser(@RequestBody Users user) {
         log.info("UsersController:  list users");
         Users resource = usersService.saveUser(user);
         return ResponseEntity.ok(resource);
