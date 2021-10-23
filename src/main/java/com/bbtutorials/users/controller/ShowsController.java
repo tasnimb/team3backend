@@ -45,12 +45,13 @@ ShowsController {
 
     @CrossOrigin
     @PostMapping(value="/getWeather")
-    public Object getWeather(@RequestBody String dataBody){
+    public String getWeather(@RequestBody String dataBody){
         String city ="";
         try {
             JSONParser parser = new JSONParser();
             JSONObject json = (JSONObject) parser.parse(dataBody);
             city = json.getAsString("city");
+
         }
         catch(Exception e){
             System.out.println("Sorry we have an error!");
@@ -61,7 +62,7 @@ ShowsController {
 
     @CrossOrigin
     @PostMapping(value="/getFlightDetails")
-    public Object getFlightDetails(@RequestBody String dataBody){
+    public String getFlightDetails(@RequestBody String dataBody){
         String outBoundCity="";
         String inBoundCity="";
         try {

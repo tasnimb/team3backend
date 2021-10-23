@@ -40,6 +40,7 @@ public class ShowsService {
         String url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=b9c093c7f807a5ad859daac19b72b70f";
         RestTemplate restTemplate = new RestTemplate();
         String s1= restTemplate.getForObject(url, String.class);
+        System.out.println(s1);
         return s1;
     }
 
@@ -48,7 +49,7 @@ public class ShowsService {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer tlmhcrxtdfyu9iH2Gq9vTvLx4Rgt");
+        headers.set("Authorization", "Bearer cAn5N1IdoLDAwHHMHthhwWCPs8Yg");
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
@@ -60,11 +61,13 @@ public class ShowsService {
 
         if (response.getStatusCode() == HttpStatus.OK) {
             System.out.println("Request Successful.");
-            System.out.println(response.getBody());
+            System.out.println("===========================================");
         } else {
             System.out.println("Request Failed");
             System.out.println(response.getStatusCode());
         }
+
+
         return response.getBody();
     }
 

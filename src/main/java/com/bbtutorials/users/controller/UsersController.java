@@ -32,6 +32,7 @@ public class UsersController {
 //    public static final String ADD_USER = "/user";
 
 
+    @CrossOrigin
     @GetMapping(path = UserLinks.LIST_USERS)
     public ResponseEntity<?> listUsers() {
         log.info("UsersController:  list users");
@@ -40,6 +41,7 @@ public class UsersController {
         return ResponseEntity.ok(resource);
     }
 
+    @CrossOrigin
     @PostMapping(path = UserLinks.ADD_USER)
     public ResponseEntity<?> saveUser(@RequestBody Users user) {
         log.info("UsersController:  list users");
