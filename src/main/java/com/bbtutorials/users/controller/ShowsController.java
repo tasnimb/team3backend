@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.writer.*;
+import net.minidev.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,5 +78,24 @@ ShowsController {
 
         return showsService.getFlightDetails1(outBoundCity, inBoundCity);
     }
+
+    @CrossOrigin
+    @PostMapping(value="/getFlightPrice")
+    public String getFlightPrice(@RequestBody String dataBody){
+        JSONObject searchData = new JSONObject();
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject json = (JSONObject) parser.parse(dataBody);
+            searchData =  (JSONObject) (json.get("searchData"));
+            
+            }
+        catch(Exception e){
+            System.out.println("Sorry we have an error!");
+        }
+
+        return showsService.getFlightPrice1(searchData);
+    }
+
+
 
 }

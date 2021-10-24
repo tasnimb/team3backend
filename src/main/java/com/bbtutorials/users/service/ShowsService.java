@@ -15,6 +15,8 @@ import com.bbtutorials.users.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import net.minidev.json.JSONObject;
+
 
 import java.util.*;
 
@@ -49,7 +51,7 @@ public class ShowsService {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer cAn5N1IdoLDAwHHMHthhwWCPs8Yg");
+        headers.set("Authorization", "Bearer qgWPwyDGxAoYqYAFWwJHkGxAizMt");
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
@@ -66,8 +68,33 @@ public class ShowsService {
             System.out.println("Request Failed");
             System.out.println(response.getStatusCode());
         }
+        return response.getBody();
+    }
 
+    public String getFlightPrice1(JSONObject searchData){
+        String URL = "https://test.api.amadeus.com/v1/shopping/flight-offers/pricing";
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer qgWPwyDGxAoYqYAFWwJHkGxAizMt");
 
+        System.out.println(searchData.toJSONString());
+        HttpEntity request = new HttpEntity(searchData, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+            URL,
+            HttpMethod.POST,
+            request,
+            String.class
+        );
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            System.out.println("Request Successful.");
+            System.out.println("===========================================");
+        } 
+        else {
+            System.out.println("Request Failed");
+            System.out.println(response.getStatusCode());
+        }
         return response.getBody();
     }
 
