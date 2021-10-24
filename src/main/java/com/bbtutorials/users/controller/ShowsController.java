@@ -88,13 +88,14 @@ ShowsController {
             JSONObject json = (JSONObject) parser.parse(dataBody);
             searchData =  (JSONObject) (json.get("searchData"));
             
-            }
+        }
         catch(Exception e){
             System.out.println("Sorry we have an error!");
         }
-
         return showsService.getFlightPrice1(searchData);
     }
+
+    
 
 
 
