@@ -38,12 +38,11 @@ public class ShowsService {
         return showsRepository.save(shows);
     }
 
-    public String getWeather1(String city){
-        String url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=b9c093c7f807a5ad859daac19b72b70f";
+    public String getWeather1(String latitude, String longitude){
+        String URL = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minutely,hourly,alerts&appid=1104723fcfd67fbc35aef74bd9247c19";
         RestTemplate restTemplate = new RestTemplate();
-        String s1= restTemplate.getForObject(url, String.class);
-        System.out.println(s1);
-        return s1;
+        String results = restTemplate.getForObject(URL, String.class);
+        return results;
     }
 
     public String getFlightDetails1(String outBoundCity, String inBoundCity){

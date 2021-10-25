@@ -47,18 +47,19 @@ ShowsController {
     @CrossOrigin
     @PostMapping(value="/getWeather")
     public String getWeather(@RequestBody String dataBody){
-        String city ="";
+        String latitude ="";
+        String longitude ="";
         try {
             JSONParser parser = new JSONParser();
             JSONObject json = (JSONObject) parser.parse(dataBody);
-            city = json.getAsString("city");
-
+            latitude = json.getAsString("latitude");
+            longitude = json.getAsString("longitude");
         }
         catch(Exception e){
             System.out.println("Sorry we have an error!");
         }
 
-        return showsService.getWeather1(city);
+        return showsService.getWeather1(latitude, longitude);
     }
 
     @CrossOrigin
