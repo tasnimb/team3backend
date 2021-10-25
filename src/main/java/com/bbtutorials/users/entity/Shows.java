@@ -20,6 +20,11 @@ public class Shows{
     @Column(nullable=false)
     private String city;
 
+    @Column(nullable=false)
+    private String latitude;
+
+    @Column(nullable=false)
+    private String longitude;
 
 
 }

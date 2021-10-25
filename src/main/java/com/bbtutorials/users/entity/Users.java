@@ -30,5 +30,4 @@ public class Users {
     @NotNull(message="{NotNull.User.email}")
     private String email;
 
-
 }
