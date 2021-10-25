@@ -45,12 +45,12 @@ public class ShowsService {
         return results;
     }
 
-    public String getFlightDetails1(String outBoundCity, String inBoundCity){
-        String URL = "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+outBoundCity+"&destinationLocationCode="+inBoundCity+"&departureDate=2021-11-01&returnDate=2021-11-25&adults=1&travelClass=FIRST&nonStop=false&currencyCode=GBP&max=5";
+    public String getFlightDetails1(String depCity, String arrCity, String depDate, String retDate){
+        String URL = "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+depCity+"&destinationLocationCode="+arrCity+"&departureDate="+depDate+"&returnDate="+retDate+"&adults=1&travelClass=FIRST&nonStop=false&currencyCode=GBP&max=3";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer 6Adf3EBL6bs76vZmfdxAgsUDAGle");
+        headers.set("Authorization", "Bearer usxLMN9G7Y0KUbX6613ccgEQBIPa");
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
@@ -74,7 +74,7 @@ public class ShowsService {
         String URL = "https://test.api.amadeus.com/v1/shopping/flight-offers/pricing";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer 6Adf3EBL6bs76vZmfdxAgsUDAGle");
+        headers.set("Authorization", "Bearer usxLMN9G7Y0KUbX6613ccgEQBIPa");
 
         HttpEntity request = new HttpEntity(searchData, headers);
 

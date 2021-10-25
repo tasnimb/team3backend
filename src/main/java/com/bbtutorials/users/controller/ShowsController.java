@@ -65,19 +65,23 @@ ShowsController {
     @CrossOrigin
     @PostMapping(value="/getFlightDetails")
     public String getFlightDetails(@RequestBody String dataBody){
-        String outBoundCity="";
-        String inBoundCity="";
+        String depCity="";
+        String arrCity="";
+        String depDate="";
+        String retDate="";
         try {
             JSONParser parser = new JSONParser();
             JSONObject json = (JSONObject) parser.parse(dataBody);
-            outBoundCity = json.getAsString("outBoundCity");
-            inBoundCity = json.getAsString("inBoundCity");
+            depCity = json.getAsString("depCity");
+            arrCity = json.getAsString("arrCity");
+            depDate = json.getAsString("depDate");
+            retDate = json.getAsString("retDate");
         }
         catch(Exception e){
             System.out.println("Sorry we have an error!");
         }
 
-        return showsService.getFlightDetails1(outBoundCity, inBoundCity);
+        return showsService.getFlightDetails1(depCity, arrCity, depDate, retDate);
     }
 
     @CrossOrigin
