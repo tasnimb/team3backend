@@ -34,7 +34,7 @@ public class ShowsService {
         return showsRepository.findAll();
     }
     public Shows saveShow(Shows shows) {
-        shows.setId(new Random().nextInt());
+        shows.setId(new Random().nextInt());//hellotesting the jenkins pipeline
         return showsRepository.save(shows);
     }
 
