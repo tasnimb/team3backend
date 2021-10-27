@@ -46,7 +46,7 @@ public class ShowsService {
     }
 
     public String getFlightDetails1(String depCity, String arrCity, String depDate, String retDate){
-        String URL = "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+depCity+"&destinationLocationCode="+arrCity+"&departureDate="+depDate+"&returnDate="+retDate+"&adults=1&travelClass=FIRST&nonStop=false&currencyCode=GBP&max=3";
+        String URL = "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode="+depCity+"&destinationLocationCode="+arrCity+"&departureDate="+depDate+"&returnDate="+retDate+"&adults=1&travelClass=ECONOMY&nonStop=false&currencyCode=GBP&max=3";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
