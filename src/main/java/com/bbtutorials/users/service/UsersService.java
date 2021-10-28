@@ -11,6 +11,10 @@ import com.bbtutorials.users.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import io.micrometer.core.ipc.http.HttpSender.Response;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+
 @Component
 public class UsersService {
 	
@@ -29,13 +33,41 @@ public class UsersService {
     // 	return usersRepository.save(users);
     // }
 
-    public String getRegister1(String firstName, String lastName, String email, String passWord){
+    public JSONObject getRegister1(Users newUser){
 
-        //Users us1 = new Users(((long) 2), firstName, lastName, email, passWord);
-        //usersRepository.save(us1);
+        JSONObject jsonResponse = new JSONObject();
+        Boolean validationPassed = true;
+        String status = "PASSED";
+        int invalidField = -1;
 
-        String test1 = "hello tas is snappy";
-        return test1;
+        List<Users> allUsers = usersRepository.findAll();
+        for(Users user:allUsers){
+            if((user.getEmail()).equals(newUser.getEmail())){//Check if email already registered
+                validationPassed = false;
+                status = "An account is already registered with this email";
+                break;  
+            }
+           
+        }
+        //Check for email format
+
+        //Check for blank fields
+
+        //Check password - 4 characters 
+        
+        if(validationPassed){//Save the user only if it has passed the validation
+            usersRepository.save(newUser);
+        }
+       
+        String reponse = "{'validationPassed':"+validationPassed+", 'status':"+status+", 'invalidField':"+invalidField+"}";
+        try{
+            JSONParser parser = new JSONParser();
+            jsonResponse = (JSONObject) parser.parse(reponse);
+        }
+        catch(Exception e){
+            System.out.println("Sorry we have an error!");
+        }
+        return jsonResponse;
     }
 
 }

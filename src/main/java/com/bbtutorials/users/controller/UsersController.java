@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,23 +57,25 @@ public class UsersController {
 
     @CrossOrigin
     @PostMapping(value="/getRegister")
-    public String getRegister(@RequestBody String dataBody){
+    public JSONObject getRegister(@RequestBody String dataBody){
         String firstName = "";
         String lastName = "";
         String email = "";
-        String passWord = "";
+        String password = "";
+        Users user = new Users("", "", "", "");
         try {
             JSONParser parser = new JSONParser();
             JSONObject json = (JSONObject) parser.parse(dataBody);
             firstName = json.getAsString("firstName");
             lastName = json.getAsString("lastName");
             email = json.getAsString("email");
-            passWord = json.getAsString("passWord");
+            password = json.getAsString("password");
+            user = new Users(firstName, lastName, email, password);
         }
         catch(Exception e){
             System.out.println("Sorry we have an error!");
         }
-        return usersService.getRegister1(firstName, lastName, email, passWord);
+        return usersService.getRegister1(user);
     }
 
 

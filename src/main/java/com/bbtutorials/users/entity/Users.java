@@ -10,41 +10,50 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 
 
 
 @Entity(name = "Users")
-@Data
+//@Data
+@Getter
 public class Users {
-    public Users(long id, String firstName, String lastName, String email, String passWord){
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.passWord = passWord;
+    public Users(String FIRSTNAME, String LASTNAME, String EMAIL, String PASSWORD){
+        this.FIRSTNAME = FIRSTNAME;
+        this.LASTNAME = LASTNAME;
+        this.EMAIL = EMAIL;
+        this.PASSWORD = PASSWORD;
     }
+    public Users(){
+    }
+
+
 	@Id
-	@Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
 
     @Column
-    @NotNull(message="{NotNull.User.firstName}")
-    private String firstName;
+    @NotNull
+    private String FIRSTNAME;
     
     @Column
-    @NotNull(message="{NotNull.User.lastName}")
-    private String lastName;
+    @NotNull
+    private String LASTNAME;
     
     @Column
-    @NotNull(message="{NotNull.User.email}")
-    private String email;
+    @NotNull
+    private String EMAIL;
 
     @Column
-    @NotNull(message="{NotNull.User.passWord}")
-    private String passWord;
+    @NotNull
+    private String PASSWORD;
 
-   
+    public void setId(Integer id){
+        this.id = id;
+    }
+    public String getEmail(){
+        return EMAIL;
+    }
 
 }
