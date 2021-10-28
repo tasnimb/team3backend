@@ -34,6 +34,29 @@ public class UsersService {
     // 	return usersRepository.save(users);
     // }
 
+    public JSONObject getLoggedIn(String email, String password){
+        boolean valid = false;
+        JSONObject jsonResponse = new JSONObject();
+        List<Users> allUsers = usersRepository.findAll();
+        for(Users user:allUsers){
+            if((user.getEmail()).equals(email)){//Check if email already registered
+                if((user.getPassword()).equals(password)){
+                    valid = true;
+                    break;
+                }
+            }
+        }
+        String reponse = "{'valid':"+valid+"}";
+        try{
+            JSONParser parser = new JSONParser();
+            jsonResponse = (JSONObject) parser.parse(reponse);
+        }
+        catch(Exception e){
+            System.out.println("Sorry we have an error!");
+        }
+
+        return jsonResponse;
+    }
     public JSONObject getRegister1(Users newUser){
 
         String regPattern = "^[A-Za-z0-9\\.]+@[A-Za-z0-9\\.]+\\.[A-Za-z]{2,}[A-Za-z\\.]*";

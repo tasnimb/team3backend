@@ -78,5 +78,23 @@ public class UsersController {
         return usersService.getRegister1(user);
     }
 
+    @CrossOrigin
+    @PostMapping(value="/getLoggedIn")
+    public JSONObject getLoggedIn(@RequestBody String dataBody){
+        String email = "";
+        String password = "";
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject json = (JSONObject) parser.parse(dataBody);
+            email = json.getAsString("email");
+            password = json.getAsString("password");
+        }
+        catch(Exception e){
+            System.out.println("Sorry we have an error!");
+        }
+        return usersService.getLoggedIn(email, password);
+    }
+    
+
 
 }
