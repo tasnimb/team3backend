@@ -50,7 +50,7 @@ public class ShowsService {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("Authorization", "Bearer jJuHcoJg0QA66ygJWk4vu9USH2Tm");
+        headers.set("Authorization", "Bearer cv4cvPpT29XUgH2xI944nJpNVAqQ");
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
@@ -74,7 +74,7 @@ public class ShowsService {
         String URL = "https://test.api.amadeus.com/v1/shopping/flight-offers/pricing";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer jJuHcoJg0QA66ygJWk4vu9USH2Tm");
+        headers.set("Authorization", "Bearer cv4cvPpT29XUgH2xI944nJpNVAqQ");
 
         HttpEntity request = new HttpEntity(searchData, headers);
 
