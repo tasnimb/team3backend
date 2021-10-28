@@ -8,9 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
+
+
+
 @Entity(name = "Users")
 @Data
+@AllArgsConstructor
 public class Users {
 	
 	@Id
@@ -29,5 +35,11 @@ public class Users {
     @Column
     @NotNull(message="{NotNull.User.email}")
     private String email;
+
+    @Column
+    @NotNull(message="{NotNull.User.passWord}")
+    private String passWord;
+
+   
 
 }

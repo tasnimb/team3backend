@@ -21,6 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.client.RestTemplate;
 import java.awt.PageAttributes.MediaType;
+
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+
+
 @Slf4j
 @RestController
 @RequestMapping("/api/")
@@ -32,23 +37,43 @@ public class UsersController {
 //    public static final String ADD_USER = "/user";
 
 
-    @CrossOrigin
-    @GetMapping(path = UserLinks.LIST_USERS)
-    public ResponseEntity<?> listUsers() {
-        log.info("UsersController:  list users");
-        List<Users> resource = usersService.getUsers();
-        System.out.println();
-        return ResponseEntity.ok(resource);
-    }
+    // @CrossOrigin
+    // @GetMapping(path = UserLinks.LIST_USERS)
+    // public ResponseEntity<?> listUsers() {
+    //     log.info("UsersController:  list users");
+    //     List<Users> resource = usersService.getUsers();
+    //     System.out.println();
+    //     return ResponseEntity.ok(resource);
+    // }
+
+    // @CrossOrigin
+    // @PostMapping(path = UserLinks.ADD_USER)
+    // public ResponseEntity<?> saveUser(@RequestBody Users user) {
+    //     log.info("UsersController:  list users");
+    //     Users resource = usersService.saveUser(user);
+    //     return ResponseEntity.ok(resource);
+    // }
 
     @CrossOrigin
-    @PostMapping(path = UserLinks.ADD_USER)
-    public ResponseEntity<?> saveUser(@RequestBody Users user) {
-        log.info("UsersController:  list users");
-        Users resource = usersService.saveUser(user);
-        return ResponseEntity.ok(resource);
+    @PostMapping(value="/getRegister")
+    public String getRegister(@RequestBody String dataBody){
+        String firstName = "";
+        String lastName = "";
+        String email = "";
+        String passWord = "";
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject json = (JSONObject) parser.parse(dataBody);
+            firstName = json.getAsString("firstName");
+            lastName = json.getAsString("lastName");
+            email = json.getAsString("email");
+            passWord = json.getAsString("passWord");
+        }
+        catch(Exception e){
+            System.out.println("Sorry we have an error!");
+        }
+        return usersService.getRegister1(firstName, lastName, email, passWord);
     }
-
 
 
 }

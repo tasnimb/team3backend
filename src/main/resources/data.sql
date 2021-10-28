@@ -12,9 +12,10 @@ CREATE TABLE shows (
 
 CREATE TABLE users (
   id INT PRIMARY KEY,
-  FIRST_NAME VARCHAR(250) NOT NULL,
-  LAST_NAME VARCHAR(250) NOT NULL,
-  EMAIL VARCHAR(250) NOT NULL
+  showFirstName VARCHAR(250) NOT NULL,
+  showLastName VARCHAR(250) NOT NULL,
+  showEmail VARCHAR(250) NOT NULL,
+  showPassWord VARCHAR(250) NOT NULL
 );
 INSERT INTO shows (id, ShowName, ShowCountry, ShowCity, showLatitude, showLongitude) VALUES
   (1, 'Mare Of Easttown', 'USA', 'Pennsylvania', '41.2033', '77.1945'),
@@ -24,8 +25,8 @@ INSERT INTO shows (id, ShowName, ShowCountry, ShowCity, showLatitude, showLongit
   (5, 'Bulletproof: South Africa', 'South Africa', 'Cape Town', '-33.918861', '18.423300'),
   (6, 'Squid Game', 'South Korea', 'Daejeon', '36.351002', '127.385002');
 
-INSERT INTO users (ID, FIRST_NAME, LAST_NAME, EMAIL) VALUES
-  (1, 'first', 'last 1', 'abc1@gmail.com'),
-  (2, 'first', 'last 2', 'abc2@gmail.com'),
-  (3, 'first', 'last 3', 'abc3@gmail.com'),
-  (4, 'first', 'last 4', 'abc4@gmail.com');
+INSERT INTO users (id, showFirstName, showLastName, showEmail, showPassWord) VALUES
+  (1, 'elisa', 'lee', 'elisa@mail.com','password123'),
+  (2, 'tommy', 'shelby', 'shelby@mail.com', 'password785'),
+  (3, 'david', 'beckham', 'david7@mail.com','harper'),
+  (4, 'Tommy', 'Robinson', 'IamRacist@gmail.com', 'password');
