@@ -16,9 +16,14 @@ import lombok.Data;
 
 @Entity(name = "Users")
 @Data
-@AllArgsConstructor
 public class Users {
-	
+    public Users(long id, String firstName, String lastName, String email, String passWord){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.passWord = passWord;
+    }
 	@Id
 	@Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
