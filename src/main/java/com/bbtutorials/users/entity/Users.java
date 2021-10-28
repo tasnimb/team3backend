@@ -25,9 +25,7 @@ public class Users {
         this.EMAIL = EMAIL;
         this.PASSWORD = PASSWORD;
     }
-    public Users(){
-    }
-
+    public Users(){}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -52,8 +50,17 @@ public class Users {
     public void setId(Integer id){
         this.id = id;
     }
+    public String getFirstName(){
+        return FIRSTNAME;
+    }
+    public String getLastName(){
+        return LASTNAME;
+    }
     public String getEmail(){
         return EMAIL;
+    }
+    public String getPassword(){
+        return PASSWORD;
     }
 
 }
